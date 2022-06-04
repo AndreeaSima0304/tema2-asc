@@ -1,0 +1,55 @@
+=== Sima Andreea 335CA ===
+Tema 2 ASC
+
+
+Fisierele sursa si Makefile-ul se afla in folder-ul src, iar graficele pentru reprezentarea 
+timpilor de executie se afla in radacina arhivei.
+
+Pentru varianta BLAS, am folosit functiile cblas_dgemm si cblas_dtrmm pentru a imparti
+ecuatia in mai multe ecuatii mai mici. Pentru inmultirea At * A am folosit functia
+cblas_dtrmm, deoarece A este matrice superior triunghiulara, iar pentru celelalte operatii
+am folosit cblas_dgemm.
+
+Pentru metoda neoptimizata am folosit inmultiri normale de matrici, tinand cont in acelasi
+timp de faptul ca A este matrice superior triunghiulara.
+
+Pentru metoda optimizata am optimizat buclele si accesul la matrici, metode invatate in 
+cadrul laboratorului 5.
+
+
+=== Cache ===
+Numarul de citiri din cache este cel mai mic pentru metoda blas, iar numarul cel mai
+mare se afla in metoda neoptimizata.
+Numarul de missuri este cel mai mic in metoda blas, deoarece codul este foarte optimizat.
+
+=== Memory ===
+In cadrul tuturor metodelor nu exista niciun leak de memorie.
+
+
+=== Grafice ===
+Blas 
+- N = 400 : 0.045064  
+- N = 800 : 0.338794   
+- N = 1000 : 0.670216 
+- N = 1200 : 1.124864  
+- N = 1500 : 2.204121   
+
+Neopt
+- N = 400 : 1.458892 
+- N = 800 : 11.638830
+- N = 1000 : 22.464931 
+- N = 1200 : 41.345833 
+- N = 1500 : 101.307182 
+
+Opt
+- N = 400 : 0.412731    
+- N = 800 : 3.640725
+- N = 1000 : 5.830906 
+- N = 1200 : 11.937379 
+- N = 1500 : 30.407051
+
+Rezultate timpi de executie:
+Se poate observa ca metoda BLAS este cea mai eficienta, pentru ca foloseste functii 
+specializate in lucrul cu matrici, iar pentru celelalte doua metode timpul creste 
+exponential in odata cu cresterea numarului de elemente.
+
